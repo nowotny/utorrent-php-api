@@ -226,7 +226,12 @@ class Api {
     public function torrentPause($hash) {
         $this->makeRequest("?action=pause".$this->paramImplode("&hash=", $hash), false);
     }
-
+    
+    // unpause the specified torrent hashes
+    public function torrentUnpause($hash) {
+        $this->makeRequest("?action=unpause".$this->paramImplode("&hash=", $hash), false);
+    }
+    
     // recheck the specified torrent hashes
     public function torrentRecheck($hash) {
         $this->makeRequest("?action=recheck".$this->paramImplode("&hash=", $hash), false);
@@ -246,4 +251,26 @@ class Api {
     public function torrentRemove($hash, $data = false) {
         $this->makeRequest("?action=".($data ? "removedata" : "remove").$this->paramImplode("&hash=", $hash), false);
     }
+    
+    // move the specified torrent to the top of the queue
+    public function torrentQueueTop($hash) {
+        $this->makeRequest("?action=queuetop".$this->paramImplode("&hash=", $hash), false);
+    }
+    
+    // move the specified torrent to the bottom of the queue
+    public function torrentQueueBottom($hash) {
+        $this->makeRequest("?action=queuebottom".$this->paramImplode("&hash=", $hash), false);
+    }
+    
+    // move the specified torrent up the queue
+    public function torrentQueueUp($hash) {
+        $this->makeRequest("?action=queueup".$this->paramImplode("&hash=", $hash), false);
+    }
+    
+    // move the specified torrent down the queue
+    public function torrentQueueDown($hash) {
+        $this->makeRequest("?action=queuedown".$this->paramImplode("&hash=", $hash), false);
+    }
+    
+    
 }
