@@ -24,11 +24,19 @@ class Filter {
     const QUALITY_SATRIP = 32768;
 
     public $filterId;
+    
+    /**
+     * Filter is enabled
+     * @var bool
+     */
+    public $enabled;
+    
     /**
      * Filter matches original name instead of decoded name
      * @var bool
      */
     public $origname;
+    
     /**
      * Give download highest priority
      * @var bool
@@ -36,6 +44,7 @@ class Filter {
     public $prio;
     public $smartEpFilter;
     public $addStopped;
+    
     /**
      * Name/label of the filter
      * @var string
@@ -43,12 +52,14 @@ class Filter {
     public $name;
     public $filter;
     public $notFilter;
+    
     /**
      * Path to save torrents to
      * @var string
      */
     public $saveIn;
     public $feedId;
+    
     /**
      * Quality filter. See QUALITY_ constants
      * @var int
@@ -79,6 +90,7 @@ class Filter {
         $filter->filterId = $data[0];
         // Bitmask for settings:
         // 1 = enabled. Not sure how to disable it. UI doesn't seem to support it
+        $filter->enabled = (bool)(1 & $data[1]);
         $filter->origname = (bool)(2 & $data[1]);
         $filter->prio = (bool)(4 & $data[1]);
         $filter->smartEpFilter = (bool)(8 & $data[1]);
