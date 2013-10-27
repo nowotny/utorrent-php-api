@@ -171,7 +171,11 @@ class Api {
         $filter->filterId = -1;
         $this->setRSSFilter($filter);
     }
-
+    
+    public function removeRSSFilter(model\Filter $filter) {
+        $this->makeRequest("?action=filter-remove".$this->paramImplode("&filter-id=", $filter->filterId), false);
+    }
+    
     // returns true if WebUI server is online and enabled, false otherwise
     public function is_online() {
         return is_array($this->makeRequest("?"));
